@@ -40,4 +40,4 @@ This snippet is highly customizable. Here are the available parameters to change
 
 ## License
 
-BSD-3
+[BSD-3](https://github.com/allejo/jekyll-toc/blob/master/LICENSE.md)
