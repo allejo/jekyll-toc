@@ -6,6 +6,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - tests.py
+  - vendor
 
 collections:
   tests:
