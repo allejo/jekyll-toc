@@ -5,6 +5,7 @@ markdown: kramdown
 exclude:
   - Gemfile
   - Gemfile.lock
+  - LICENSE.md
   - README.md
   - tests.py
   - vendor
