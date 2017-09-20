@@ -40,4 +40,4 @@ This snippet is highly customizable. Here are the available parameters to change
 
 ## License
 
-[BSD-3](https://github.com/allejo/jekyll-toc/blob/master/LICENSE.md)
+This snippet may be redistributed under either the [BSD-3](https://github.com/allejo/jekyll-toc/blob/master/LICENSE.BSD3.md) or [MIT](https://github.com/allejo/jekyll-toc/blob/master/LICENSE.MIT.md) licenses.
