@@ -1,6 +1,6 @@
 # Jekyll Pure Liquid Table of Contents
 
-[![Build Status](https://travis-ci.org/allejo/jekyll-toc.png?branch=master)](https://travis-ci.org/allejo/jekyll-toc)
+[![Build Status](https://travis-ci.org/allejo/jekyll-toc.svg?branch=master)](https://travis-ci.org/allejo/jekyll-toc)
 
 GitHub Pages can't run custom Jekyll plug-ins so when generating Tables of Contents (TOCs), you're stuck with either a JavaScript solution or using kramdown's `{:toc}` option. However, by using `{:toc}`, you are forced to have that code next to your actual markdown and you can't place it in a layout. This means _every_. _single_. _post_. will need to have the snippet. If you choose the JavaScript approach, that's perfectly fine but what if JS is disabled on the someone's browser or your page is just _really_ long and it becomes inefficient.
 
