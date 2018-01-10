@@ -36,8 +36,24 @@ This snippet is highly customizable. Here are the available parameters to change
 | `id`       | string | ''     | an ID to assigned to the TOC |
 | `h_min`    | int    | 1      | the minimum TOC header level to use; any heading lower than this value will be ignored |
 | `h_max`    | int    | 6      | the maximum TOC header level to use; any heading greater than this value will be ignored |
+| `ordered`  | bool   | false  | when set to true, an ordered list will be outputted instead of an unordered list |
 
 <sup>*</sup> This is a required parameter
+
+## Perfomance
+
+The performance impact of this snippet on your site is pretty negligible. The stats below were gotten from Jekyll's `--profile` option.
+
+```
+Filename                              | Count |      Bytes |    Time
+--------------------------------------+-------+------------+--------
+
+# performance on docs.docker.com from ~Feb 2017
+_includes/toc.html                    |   813 |    524.17K |  6.422
+
+# performance on the "Minimal Mistakes" Jekyll theme
+_includes/toc.html                    |    94 |     29.43K |  0.413
+```
 
 ## License
 
