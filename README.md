@@ -40,7 +40,7 @@ This snippet is highly customizable. Here are the available parameters to change
 
 <sup>*</sup> This is a required parameter
 
-## Perfomance
+## Performance
 
 The performance impact of this snippet on your site is pretty negligible. The stats below were gotten from Jekyll's `--profile` option.
 
