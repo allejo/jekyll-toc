@@ -1,6 +1,7 @@
 {% capture tocWorkspace %}
     {% comment %}
-        Version 1.0.2
+        Version 1.0.3
+          https://github.com/allejo/jekyll-toc
 
         "...like all things liquid - where there's a will, and ~36 hours to spare, there's usually a/some way" ~jaybe
 
@@ -16,16 +17,20 @@
             * id       (string) :   ''   - an ID to assigned to the TOC
             * h_min    (int)    :   1    - the minimum TOC header level to use; any header lower than this value will be ignored
             * h_max    (int)    :   6    - the maximum TOC header level to use; any header greater than this value will be ignored
+            * ordered  (bool)   : false  - when set to true, an ordered list will be outputted instead of an unordered list
 
         Output:
-            An unordered list representing the table of contents of a markdown block. This snippet will only generate the table of contents and will NOT output the markdown given to it
+            An ordered or unordered list representing the table of contents of a markdown block. This snippet will only generate the table of contents and will NOT output the markdown given to it
     {% endcomment %}
 
     {% capture my_toc %}{% endcapture %}
+    {% assign orderedList = include.ordered | default: false %}
     {% assign minHeader = include.h_min | default: 1 %}
     {% assign maxHeader = include.h_max | default: 6 %}
     {% assign nodes = include.html | split: '<h' %}
     {% assign firstHeader = true %}
+
+    {% capture listModifier %}{% if orderedList %}1.{% else %}-{% endif %}{% endcapture %}
 
     {% for node in nodes %}
         {% if node == "" %}
@@ -55,11 +60,11 @@
 
         {% assign space = '' %}
         {% for i in (1..indentAmount) %}
-            {% assign space = space | prepend: '  ' %}
+            {% assign space = space | prepend: '    ' %}
         {% endfor %}
 
         {% capture my_toc %}{{ my_toc }}
-{{ space }}- [{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}](#{{ html_id }}){% endcapture %}
+{{ space }}{{ listModifier }} [{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}](#{{ html_id }}){% endcapture %}
 
     {% endfor %}
 
