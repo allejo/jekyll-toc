@@ -37,6 +37,7 @@ This snippet is highly customizable. Here are the available parameters to change
 | `h_min`    | int    | 1      | the minimum TOC header level to use; any heading lower than this value will be ignored |
 | `h_max`    | int    | 6      | the maximum TOC header level to use; any heading greater than this value will be ignored |
 | `ordered`  | bool   | false  | when set to true, an ordered list will be outputted instead of an unordered list |
+| `item_class` | string | ''   | add custom class for each list item; has support for '%level%' placeholder, which is the current heading level |
 
 <sup>*</sup> This is a required parameter
 
