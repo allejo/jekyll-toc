@@ -9,6 +9,7 @@ Instead, I wrote this solution entirely in Liquid and can be used as an `{% incl
 - [the docs.docker.com website](https://github.com/docker/docker.github.io/pull/1474)
 - [the UK Ministry of Justice Technical Guidance site](https://github.com/ministryofjustice/technical-guidance/pull/7)
 - ["Minimal Mistakes" Jekyll Theme](https://github.com/mmistakes/minimal-mistakes/pull/1310)
+- [Apache's Beam website](https://github.com/apache/beam-site/blob/asf-site/src/_includes/page-toc.html)
 
 For more information regarding how this include works, [read the blog post](https://allejo.io/blog/a-jekyll-toc-in-liquid-only/).
 
