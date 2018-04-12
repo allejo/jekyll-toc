@@ -17,7 +17,7 @@ For more information regarding how this include works, [read the blog post](http
 
 Alright, so how do you use it? In any given Jekyll layout, you have the `content` variable, which has the HTML rendered from the markdown source.
 
-1. Download the latest `toc.html` file
+1. Download the latest [`toc.html`](/_includes/toc.html) file
 2. Toss that file in your `_includes` folder
 3. Use it in your Liquid
 
@@ -38,7 +38,7 @@ This snippet is highly customizable. Here are the available parameters to change
 | `h_min`    | int    | 1      | the minimum TOC header level to use; any heading lower than this value will be ignored |
 | `h_max`    | int    | 6      | the maximum TOC header level to use; any heading greater than this value will be ignored |
 | `ordered`  | bool   | false  | when set to true, an ordered list will be outputted instead of an unordered list |
-| `item_class` | string | ''   | add custom class for each list item; has support for '%level%' placeholder, which is the current heading level |
+| `item_class` | string | ''   | add custom class for each list item; has support for `%level%` placeholder, which is the current heading level |
 
 <sup>*</sup> This is a required parameter
 
