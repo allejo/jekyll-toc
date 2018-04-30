@@ -17,11 +17,11 @@ For more information regarding how this include works, [read the blog post](http
 
 ## Usage
 
-Alright, so how do you use it? In any given Jekyll layout, you have the `content` variable, which has the HTML rendered from the markdown source.
+Alright, so how do you use it? 
 
 1. Download the latest [`toc.html`](/_includes/toc.html) file
-2. Toss that file in your `_includes` folder
-3. Use it in your Liquid
+2. Toss that file in your `_includes` folder.
+3. Use it in your template layout where you have `{{ content }}` which is the HTML rendered from the markdown source with this liquid tag:
 
    ```liquid
    {% include toc.html html=content %}
