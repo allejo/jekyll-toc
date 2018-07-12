@@ -9,15 +9,17 @@ Instead, I wrote this solution entirely in Liquid and can be used as an `{% incl
 - [the docs.docker.com website](https://github.com/docker/docker.github.io/pull/1474)
 - [the UK Ministry of Justice Technical Guidance site](https://github.com/ministryofjustice/technical-guidance/pull/7)
 - ["Minimal Mistakes" Jekyll Theme](https://github.com/mmistakes/minimal-mistakes/pull/1310)
-- [Apache's Beam website](https://github.com/apache/beam-site/blob/5a9fb94b27575bc1a73fbc3725d0e31c3114aa9f/src/_includes/page-toc.html)
-- [Apache's PDFBox website](https://github.com/apache/pdfbox-docs/commit/37123aa785562c08ad3fa748a289a9ad81c8734c)
+- Apache's [Beam](https://github.com/apache/beam-site/blob/5a9fb94b27575bc1a73fbc3725d0e31c3114aa9f/src/_includes/page-toc.html) and [PDFBox](https://github.com/apache/pdfbox-docs/commit/37123aa785562c08ad3fa748a289a9ad81c8734c) websites
 - [JetBrains' OSS Jekyll Theme](https://github.com/JetBrains/oss-site-jekyll-theme/commit/ff779cfa2ebc2c34f0d1e194a1d6a27a748f0c96)
+- [Bitcoin.org](https://github.com/bitcoin-dot-org/bitcoin.org/commit/adf254847a4bfe8d8c1185bd875776dd7c24ef62)
+- [CloudCannon](https://github.com/CloudCannon/documentation/commit/2dca0e9ecede5ac3ecdff0bf631293aff72ffa71)
+- [British Antarctic Survey](https://github.com/antarctica/bas-style-kit-jekyll-theme/commit/7398c88bf18f20ecca575f44bceb784b5e538e67)
 
 For more information regarding how this include works, [read the blog post](https://allejo.io/blog/a-jekyll-toc-in-liquid-only/).
 
 ## Usage
 
-Alright, so how do you use it? 
+Alright, so how do you use it?
 
 1. Download the latest [`toc.html`](/_includes/toc.html) file
 2. Toss that file in your `_includes` folder.
