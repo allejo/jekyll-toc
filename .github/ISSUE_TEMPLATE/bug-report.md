@@ -1,10 +1,8 @@
-<!--
-  If you're submitting an issue with what was rendered by toc.html,
-  please follow this template.
+---
+name: Bug Report
+about: Something about your TOC isn't being generated correctly
 
-  If you're requesting a feature, feel free to discard this template and
-  describe the feature you're envisioning.
--->
+---
 
 **My Markdown**
 
@@ -27,14 +25,14 @@
   values you're setting for `h_min`, `sanitize`, etc.
 -->
 
-```liquid
+```twig
 {% include toc.html html=content %}
 ```
 
 **Expected TOC**
 
 <!--
-  The HTML of the TOC you expected to see
+  The HTML of the TOC you _expected_ to see
 -->
 
 ```html
