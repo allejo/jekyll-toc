@@ -14,6 +14,7 @@ Instead, I wrote this solution entirely in Liquid and can be used as an `{% incl
 - [Bitcoin.org](https://github.com/bitcoin-dot-org/bitcoin.org/commit/adf254847a4bfe8d8c1185bd875776dd7c24ef62)
 - [CloudCannon](https://github.com/CloudCannon/documentation/commit/2dca0e9ecede5ac3ecdff0bf631293aff72ffa71)
 - [British Antarctic Survey](https://github.com/antarctica/bas-style-kit-jekyll-theme/commit/7398c88bf18f20ecca575f44bceb784b5e538e67)
+- [Travis CI Docs](https://github.com/travis-ci/docs-travis-ci-com/pull/1909)
 
 For more information regarding how this include works, [read the blog post](https://allejo.io/blog/a-jekyll-toc-in-liquid-only/).
 
