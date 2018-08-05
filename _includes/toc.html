@@ -19,6 +19,7 @@
             * h_max      (int)    :   6    - the maximum TOC header level to use; any header greater than this value will be ignored
             * ordered    (bool)   : false  - when set to true, an ordered list will be outputted instead of an unordered list
             * item_class (string) :   ''   - add custom class for each list item; has support for '%level%' placeholder, which is the current heading level
+            * base_url   (string) :   ''   - add an base url to the TOC links for when your TOC is on an other page than the actual content
 
         Output:
             An ordered or unordered list representing the table of contents of a markdown block. This snippet will only generate the table of contents and will NOT output the markdown given to it
@@ -69,8 +70,7 @@
         {% endunless %}
 
         {% capture my_toc %}{{ my_toc }}
-{{ space }}{{ listModifier }} {{ listItemClass }} [{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}](#{{ html_id }}){% endcapture %}
-
+{{ space }}{{ listModifier }} {{ listItemClass }} [{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}]({% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ html_id }}){% endcapture %}
     {% endfor %}
 
     {% if include.class %}
