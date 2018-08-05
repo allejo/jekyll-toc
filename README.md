@@ -44,7 +44,7 @@ This snippet is highly customizable. Here are the available parameters to change
 | `h_max`    | int    | 6      | the maximum TOC header level to use; any heading greater than this value will be ignored |
 | `ordered`  | bool   | false  | when set to true, an ordered list will be outputted instead of an unordered list |
 | `item_class` | string | ''   | add custom class for each list item; has support for `%level%` placeholder, which is the current heading level |
-| `base_url` | string | ''   | add an base url to the TOC links for when your TOC is on an other page than the actual content |
+| `baseurl`  | string | ''     | add a base url to the TOC links for when your TOC is on another page than the actual content |
 
 <sup>*</sup> This is a required parameter
 
