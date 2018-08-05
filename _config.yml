@@ -3,12 +3,16 @@ baseurl: "" # the subpath of your site, e.g. /blog
 # Build settings
 markdown: kramdown
 exclude:
+  - CONTRIBUTING.md
   - Gemfile
   - Gemfile.lock
-  - LICENSE.md
+  - LICENSE.BSD3.md
+  - LICENSE.MIT.md
   - README.md
   - tests.py
   - vendor
+
+theme: null
 
 collections:
   tests:
