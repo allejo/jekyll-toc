@@ -50,7 +50,12 @@
             {% assign minHeader = headerLevel %}
         {% endif %}
 
+        {% assign lastIndent = indentAmount %}
         {% assign indentAmount = headerLevel | minus: minHeader | add: 1 %}
+        {% if lastIndent and lastIndent < indentAmount %}
+            {% assign indentAmount = lastIndent | plus: 1 %}
+        {% endif %}
+        
         {% assign _workspace = node | split: '</h' %}
 
         {% assign _idWorkspace = _workspace[0] | split: 'id="' %}
