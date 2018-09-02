@@ -39,6 +39,7 @@
             {% continue %}
         {% endif %}
 
+        {% assign lastHeaderLevel = headerLevel %}
         {% assign headerLevel = node | replace: '"', '' | slice: 0, 1 | times: 1 %}
 
         {% if headerLevel < minHeader or headerLevel > maxHeader %}
@@ -52,7 +53,9 @@
 
         {% assign lastIndent = indentAmount %}
         {% assign indentAmount = headerLevel | minus: minHeader | add: 1 %}
-        {% if lastIndent and lastIndent < indentAmount %}
+        {% if lastHeaderLevel and lastHeaderLevel == headerLevel %}
+            {% assign indentAmount = lastIndent %}
+        {% elsif lastIndent and lastIndent < indentAmount %}
             {% assign indentAmount = lastIndent | plus: 1 %}
         {% endif %}
         
