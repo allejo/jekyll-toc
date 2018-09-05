@@ -41,6 +41,7 @@
             {% continue %}
         {% endif %}
 
+        {% assign lastHeaderLevel = headerLevel %}
         {% assign headerLevel = node | replace: '"', '' | slice: 0, 1 | times: 1 %}
 
         {% if headerLevel < minHeader or headerLevel > maxHeader %}
@@ -52,7 +53,14 @@
             {% assign minHeader = headerLevel %}
         {% endif %}
 
+        {% assign lastIndent = indentAmount %}
         {% assign indentAmount = headerLevel | minus: minHeader | add: 1 %}
+        {% if lastHeaderLevel and lastHeaderLevel == headerLevel %}
+            {% assign indentAmount = lastIndent %}
+        {% elsif lastIndent and lastIndent < indentAmount %}
+            {% assign indentAmount = lastIndent | plus: 1 %}
+        {% endif %}
+        
         {% assign _workspace = node | split: '</h' %}
 
         {% assign _idWorkspace = _workspace[0] | split: 'id="' %}
