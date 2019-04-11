@@ -1,6 +1,6 @@
 {% capture tocWorkspace %}
     {% comment %}
-        Version 1.0.6
+        Version 1.0.7
           https://github.com/allejo/jekyll-toc
 
         "...like all things liquid - where there's a will, and ~36 hours to spare, there's usually a/some way" ~jaybe
@@ -58,6 +58,14 @@
         {% assign _idWorkspace = _workspace[0] | split: 'id="' %}
         {% assign _idWorkspace = _idWorkspace[1] | split: '"' %}
         {% assign html_id = _idWorkspace[0] %}
+
+        {% assign _classWorkspace = _workspace[0] | split: 'class="' %}
+        {% assign _classWorkspace = _classWorkspace[1] | split: '"' %}
+        {% assign html_class = _classWorkspace[0] %}
+
+        {% if html_class contains "no_toc" %}
+            {% continue %}
+        {% endif %}
 
         {% capture _hAttrToStrip %}{{ _workspace[0] | split: '>' | first }}>{% endcapture %}
         {% assign header = _workspace[0] | replace: _hAttrToStrip, '' %}
