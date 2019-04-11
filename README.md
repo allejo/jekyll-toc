@@ -1,6 +1,9 @@
 # Jekyll Pure Liquid Table of Contents
 
 [![Build Status](https://travis-ci.org/allejo/jekyll-toc.svg?branch=master)](https://travis-ci.org/allejo/jekyll-toc)
+[![Latest release](https://img.shields.io/github/release/allejo/jekyll-toc.svg)](https://github.com/allejo/jekyll-toc/releases/latest)
+[![ko-fi](https://img.shields.io/static/v1.svg?label=&message=Support%20me%20on%20Ko-fi&color=333&logo=ko-fi)](https://ko-fi.com/Q5Q4J7IX)
+[![Buy me a coffee](https://img.shields.io/static/v1.svg?label=&message=Buy%20me%20a%20coffee&color=333&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/allejo)
 
 GitHub Pages can't run custom Jekyll plug-ins so when generating Tables of Contents (TOCs), you're stuck with either a JavaScript solution or using kramdown's `{:toc}` option. However, by using `{:toc}`, you are forced to have that code next to your actual markdown and you can't place it in a layout. This means _every_. _single_. _post_. will need to have the snippet. If you choose the JavaScript approach, that's perfectly fine but what if JS is disabled on the someone's browser or your page is just _really_ long and it becomes inefficient.
 
@@ -15,8 +18,15 @@ Instead, I wrote this solution entirely in Liquid and can be used as an `{% incl
 - [CloudCannon](https://github.com/CloudCannon/documentation/commit/2dca0e9ecede5ac3ecdff0bf631293aff72ffa71)
 - [British Antarctic Survey](https://github.com/antarctica/bas-style-kit-jekyll-theme/commit/7398c88bf18f20ecca575f44bceb784b5e538e67)
 - [Travis CI Docs](https://github.com/travis-ci/docs-travis-ci-com/pull/1909)
+- [the City of Amsterdam](https://github.com/Amsterdam/amsterdam-jekyll-theme/commit/598f0d78198cbb322b0b005ba336680a0376f55b)
+- [Intuit's Karate](https://github.com/intuit/karate/pull/634)
+- [Duality's developer docs](https://github.com/AdamsLair/duality-docs/commit/e7e3e173c0e05669fc6ed569f9445c126bbb5ee6)
 
 For more information regarding how this include works, [read the blog post](https://allejo.io/blog/a-jekyll-toc-in-liquid-only/).
+
+> **Want anchors next to your Jekyll headings without JavaScript or a plug-in?**
+>
+> Check out the sister project over at [allejo/jekyll-anchor-headings](https://github.com/allejo/jekyll-anchor-headings).
 
 ## Usage
 
