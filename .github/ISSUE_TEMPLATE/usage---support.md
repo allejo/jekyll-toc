@@ -1,6 +1,7 @@
 ---
 name: Usage / Support
 about: Need help using this TOC in your site?
+labels: question
 
 ---
 

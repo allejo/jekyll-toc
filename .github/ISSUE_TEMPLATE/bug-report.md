@@ -1,6 +1,7 @@
 ---
 name: Bug Report
 about: Something about your TOC isn't being generated correctly
+labels: bug
 
 ---
 
