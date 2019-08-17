@@ -52,7 +52,7 @@
             {% assign minHeader = headerLevel %}
         {% endif %}
 
-        {% assign indentAmount = headerLevel | minus: minHeader | add: 1 %}
+        {% assign indentAmount = headerLevel | minus: minHeader %}
         {% assign _workspace = node | split: '</h' %}
 
         {% assign _idWorkspace = _workspace[0] | split: 'id="' %}
