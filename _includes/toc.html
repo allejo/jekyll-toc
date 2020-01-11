@@ -1,6 +1,6 @@
 {% capture tocWorkspace %}
     {% comment %}
-        Version 1.0.8
+        Version 1.0.9
           https://github.com/allejo/jekyll-toc
 
         "...like all things liquid - where there's a will, and ~36 hours to spare, there's usually a/some way" ~jaybe
@@ -75,16 +75,16 @@
             {% assign space = space | prepend: '    ' %}
         {% endfor %}
 
-        {% unless include.item_class == blank %}
+        {% if include.item_class and include.item_class != blank %}
             {% capture listItemClass %}{:.{{ include.item_class | replace: '%level%', headerLevel }}}{% endcapture %}
-        {% endunless %}
+        {% endif %}
 
         {% capture heading_body %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
         {% capture my_toc %}{{ my_toc }}
 {{ space }}{{ listModifier }} {{ listItemClass }} [{{ heading_body | replace: "|", "\|" }}]({% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ html_id }}){% if include.anchor_class %}{:.{{ include.anchor_class }}}{% endif %}{% endcapture %}
     {% endfor %}
 
-    {% if include.class %}
+    {% if include.class and include.item_class != blank %}
         {% capture my_toc %}{:.{{ include.class }}}
 {{ my_toc | lstrip }}{% endcapture %}
     {% endif %}
