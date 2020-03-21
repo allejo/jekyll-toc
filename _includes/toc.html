@@ -1,6 +1,6 @@
 {% capture tocWorkspace %}
     {% comment %}
-        Version 1.0.10
+        Version 1.0.11
           https://github.com/allejo/jekyll-toc
 
         "...like all things liquid - where there's a will, and ~36 hours to spare, there's usually a/some way" ~jaybe
@@ -79,9 +79,17 @@
             {% capture listItemClass %}{:.{{ include.item_class | replace: '%level%', headerLevel }}}{% endcapture %}
         {% endif %}
 
-        {% capture heading_body %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
+        {% capture anchor_body %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
+        {% capture anchor_body %}{{ anchor_body | replace: "|", "\|" }}{% endcapture %}
+
+        {% if html_id %}
+            {% capture list_item %}[{{ anchor_body }}]({% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ html_id }}){% endcapture %}
+        {% else %}
+            {% capture list_item %}{{ anchor_body }}{% endcapture %}
+        {% endif %}
+
         {% capture my_toc %}{{ my_toc }}
-{{ space }}{{ listModifier }} {{ listItemClass }} [{{ heading_body | replace: "|", "\|" }}]({% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ html_id }}){% if include.anchor_class %}{:.{{ include.anchor_class }}}{% endif %}{% endcapture %}
+{{ space }}{{ listModifier }} {{ listItemClass }} {{ list_item }}{% if include.anchor_class %}{:.{{ include.anchor_class }}}{% endif %}{% endcapture %}
     {% endfor %}
 
     {% if include.class and include.class != blank %}
