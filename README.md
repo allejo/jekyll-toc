@@ -56,6 +56,7 @@ This snippet is highly customizable. Here are the available parameters to change
 | `item_class`   | string | ''     | add custom class for each list item; has support for `%level%` placeholder, which is the current heading level |
 | `baseurl`      | string | ''     | add a base url to the TOC links for when your TOC is on another page than the actual content |
 | `anchor_class` | string | ''     | add custom class(es) for each anchor element |
+| `skipNoIDs`    | bool   | false  | skip headers that do not have an `id` attribute |
 
 <sup>*</sup> This is a required parameter
 

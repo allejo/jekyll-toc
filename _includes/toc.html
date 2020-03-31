@@ -21,6 +21,7 @@
             * item_class   (string) :   ''   - add custom class(es) for each list item; has support for '%level%' placeholder, which is the current heading level
             * baseurl      (string) :   ''   - add a base url to the TOC links for when your TOC is on another page than the actual content
             * anchor_class (string) :   ''   - add custom class(es) for each anchor element
+            * skipNoIDs    (bool)   : false  - skip headers that do not have an `id` attribute
 
         Output:
             An ordered or unordered list representing the table of contents of a markdown block. This snippet will only
@@ -29,6 +30,7 @@
 
     {% capture my_toc %}{% endcapture %}
     {% assign orderedList = include.ordered | default: false %}
+    {% assign skipNoIDs = include.skipNoIDs | default: false %}
     {% assign minHeader = include.h_min | default: 1 %}
     {% assign maxHeader = include.h_max | default: 6 %}
     {% assign nodes = include.html | split: '<h' %}
@@ -39,6 +41,12 @@
     {% for node in nodes %}
         {% if node == "" %}
             {% continue %}
+        {% endif %}
+
+        {% if skipNoIDs == true %}
+            {% unless node contains "id=" %}
+                {% continue %}
+            {% endunless %}
         {% endif %}
 
         {% assign headerLevel = node | replace: '"', '' | slice: 0, 1 | times: 1 %}
