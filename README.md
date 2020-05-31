@@ -34,7 +34,7 @@ Alright, so how do you use it?
 
 1. Download the latest [`toc.html`](/_includes/toc.html) file
 2. Toss that file in your `_includes` folder.
-3. Use it in your template layout where you have `{{ content }}` which is the HTML rendered from the markdown source with this liquid tag:
+3. Where you typically would put {{ content }} in your layout, you would instead use this Liquid tag to output your page's content:
 
    ```liquid
    {% include toc.html html=content %}
