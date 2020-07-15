@@ -8,6 +8,7 @@
 <div>
   <h1 class="page-title">My Awesome Example Page</h1>
   <h2 class="page-subtitle">With an awesome subtitle</h2>
+    <a href='/' id="dummy-link">Dummy Link</a>
 </div>
 
 ### Known Problems
