@@ -67,12 +67,6 @@
             {% continue %}
         {% endif %}
 
-        {% if skipNoIDs == true %}
-            {% unless node contains "id=" %}
-                {% continue %}
-            {% endunless %}
-        {% endif %}
-
         {% assign headerLevel = node | replace: '"', '' | slice: 0, 1 | times: 1 %}
 
         {% if headerLevel < minHeader or headerLevel > maxHeader %}
@@ -116,6 +110,8 @@
 
         {% if html_id %}
             {% capture list_item %}[{{ anchor_body }}]({% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ html_id }}){% endcapture %}
+        {% elsif skipNoIDs == true %}
+            {% continue %}
         {% else %}
             {% capture list_item %}{{ anchor_body }}{% endcapture %}
         {% endif %}
