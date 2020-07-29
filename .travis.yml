@@ -16,6 +16,7 @@ env:
     - JEKYLL_VER="3.7.0"
     - JEKYLL_VER="3.8.0"
     - JEKYLL_VER="4.0.0"
+    - JEKYLL_VER="4.1.0"
     - GH_PAGES=1
 
 dist: trusty
