@@ -60,7 +60,7 @@
     {% assign maxHeader = include.h_max | default: 6 %}
     {% assign nodes = include.html | split: '<h' %}
     {% assign firstHeader = true %}
-    {% assign previous_level = 0 %}
+    {% assign previousLevel = 0 %}
 
     {% capture listModifier %}{% if orderedList %}1.{% else %}-{% endif %}{% endcapture %}
 
@@ -118,20 +118,25 @@
             {% capture list_item %}{{ anchor_body }}{% endcapture %}
         {% endif %}
 
-        {% if include.submenu_class and previous_level > indentAmount %}
-            {% assign submenu_space = '' %}
-            {% for i in (0..indentAmount) %}
-                {% assign submenu_space = submenu_space | prepend: '    ' %}
-            {% endfor %}
+        <!--
+        If we have a submenu class and we're unindenting, then we need to add a "closing" class to this group of bullet
+        points
+        -->
+        {% if include.submenu_class and previousLevel > indentAmount %}
+            <!--
+            `space` is the current indentation, so we if want to close off the previous grouping, we need to add one
+            more level of indentation 
+            -->
+            {% assign submenuIndentation = space | prepend: '    ' %}
 
             {% capture my_toc %}{{ my_toc }}
-{{ submenu_space }}{:.{{ include.submenu_class | replace: '%level%', previous_level }}}{% endcapture %}
+{{ submenuIndentation }}{:.{{ include.submenu_class | replace: '%level%', previousLevel }}}{% endcapture %}
         {% endif %}
 
         {% capture my_toc %}{{ my_toc }}
 {{ space }}{{ listModifier }} {{ listItemClass }} {{ list_item }}{% if include.anchor_class %}{:.{{ include.anchor_class }}}{% endif %}{% endcapture %}
 
-        {% assign previous_level = indentAmount %}
+        {% assign previousLevel = indentAmount %}
     {% endfor %}
 
     {% if include.class and include.class != blank %}
@@ -144,17 +149,22 @@
 {{ my_toc | lstrip }}{% endcapture %}
     {% endif %}
 
+    <!--
+    If we have a submenu class, we need to close off all the remaining list item groups so that submenu classes are
+    applied correctly to them
+    -->
     {% if include.submenu_class != blank %}
-        {% for i in (1..previous_level) %}
-            {% assign lvl = previous_level | plus: 1 | minus: i %}
-            {% assign closing_space = '' %}
+        <!-- The last level of indentation that we were at, we need to work backwards from there closing each group -->
+        {% for i in (1..previousLevel) %}
+            {% assign lvl = previousLevel | plus: 1 | minus: i %} <!-- Invert the indent level based on `i` -->
+            {% assign closingSpace = '' %}
 
             {% for i in (1..lvl) %}
-                {% assign closing_space = closing_space | prepend: '    ' %}
+                {% assign closingSpace = closingSpace | prepend: '    ' %}
             {% endfor %}
 
             {% capture my_toc %}{{ my_toc }}
-{{ closing_space }}{:.{{ include.submenu_class | replace: '%level%', lvl }}}{% endcapture %}
+{{ closingSpace }}{:.{{ include.submenu_class | replace: '%level%', lvl }}}{% endcapture %}
         {% endfor %}
     {% endif %}
 {% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc | markdownify | strip }}
