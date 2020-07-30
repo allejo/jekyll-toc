@@ -5,7 +5,7 @@
 {% capture markdown %}
 # Heading 1
 
-## `Heading` 2.1
+## Heading 2.1
 
 ### Heading **3**
 
@@ -24,7 +24,7 @@
         <a href="#heading-1">Heading 1</a>
         <ul>
             <li>
-                <a href="#heading-21"><code class="highlighter-rouge">Heading</code> 2.1</a>
+                <a href="#heading-21">Heading 2.1</a>
                 <ul>
                     <li>
                         <a href="#heading-3">Heading <strong>3</strong></a>
