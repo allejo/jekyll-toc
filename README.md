@@ -1,6 +1,6 @@
 # Jekyll Pure Liquid Table of Contents
 
-[![Build Status](https://travis-ci.org/allejo/jekyll-toc.svg?branch=master)](https://travis-ci.org/allejo/jekyll-toc)
+[![Unit Tests](https://github.com/allejo/jekyll-toc/workflows/Unit%20Tests/badge.svg)](https://github.com/allejo/jekyll-toc/actions?query=workflow%3A%22Unit+Tests%22)
 [![Latest release](https://img.shields.io/github/release/allejo/jekyll-toc.svg)](https://github.com/allejo/jekyll-toc/releases/latest)
 [![ko-fi](https://img.shields.io/static/v1.svg?label=&message=Support%20me%20on%20Ko-fi&color=333&logo=ko-fi)](https://ko-fi.com/Q5Q4J7IX)
 [![Buy me a coffee](https://img.shields.io/static/v1.svg?label=&message=Buy%20me%20a%20coffee&color=333&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/allejo)
