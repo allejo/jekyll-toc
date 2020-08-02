@@ -1,0 +1,52 @@
+name: Unit Tests
+
+on:
+  push: ~
+  schedule:
+    - cron: '0 0 * * 1'
+
+jobs:
+  tests:
+    name: Jekyll ${{ matrix.jekyll-versions }} on ubuntu-latest
+    runs-on: ubuntu-latest
+    env:
+      NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+    strategy:
+      fail-fast: false
+      matrix:
+        jekyll-versions:
+          - "3.3.0"
+          - "3.4.0"
+          - "3.5.0"
+          - "3.6.0"
+          - "3.7.0"
+          - "3.8.0"
+          - "4.0.0"
+          - "4.1.0"
+          - "(GitHub Pages)"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.5'
+
+      - name: Configure Jekyll
+        if: matrix.jekyll-versions != '(GitHub Pages)'
+        run: |
+          bundle add jekyll --version="~>${{ matrix.jekyll-versions }}"
+
+      - name: Configure Jekyll for GitHub Pages
+        if: matrix.jekyll-versions == '(GitHub Pages)'
+        run: |
+          sudo apt install -y libxslt-dev
+          gem install pkg-config
+          bundle add github-pages
+
+      - name: Run unit tests
+        run: |
+          bundle exec jekyll --version
+          bundle exec jekyll build
+          python tests.py
