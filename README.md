@@ -57,7 +57,7 @@ This snippet is highly customizable. Here are the available parameters to change
 | `h_max`         | int    | 6      | the maximum TOC header level to use; any heading greater than this value will be ignored |
 | `ordered`       | bool   | false  | when set to true, an ordered list will be outputted instead of an unordered list |
 | `item_class`    | string | ''     | add custom class for each list item; has support for `%level%` placeholder, which is the current heading level |
-| `submenu_class` | string | ''     | add custom class(es) for each child group of headings; has support for '%level%' placeholder which is the current "submenu" heading level |
+| `submenu_class` | string | ''     | add custom class(es) for each child group of headings; has support for `%level%` placeholder which is the current "submenu" heading level |
 | `baseurl`       | string | ''     | add a base url to the TOC links for when your TOC is on another page than the actual content |
 | `anchor_class`  | string | ''     | add custom class(es) for each anchor element |
 | `skipNoIDs`     | bool   | false  | skip headers that do not have an `id` attribute |
