@@ -153,7 +153,7 @@
     If we have a submenu class, we need to close off all the remaining list item groups so that submenu classes are
     applied correctly to them
     -->
-    {% if include.submenu_class != blank %}
+    {% if include.submenu_class and include.submenu_class != blank %}
         <!-- The last level of indentation that we were at, we need to work backwards from there closing each group -->
         {% for i in (1..previousLevel) %}
             {% assign lvl = previousLevel | plus: 1 | minus: i %} <!-- Invert the indent level based on `i` -->
