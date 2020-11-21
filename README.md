@@ -35,7 +35,7 @@ For more information regarding how this include works, [read the blog post](http
 
 Alright, so how do you use it?
 
-1. Download the latest [`toc.html`](/_includes/toc.html) file
+1. Download the `toc.html` file from [the latest release](https://github.com/allejo/jekyll-toc/releases/latest) or [the master branch](/_includes/toc.html)
 2. Toss that file in your `_includes` folder.
 3. Use it in your template layout where you have `{{ content }}` which is the HTML rendered from the markdown source with this liquid tag:
 
