@@ -5,7 +5,7 @@
 [![ko-fi](https://img.shields.io/static/v1.svg?label=&message=Support%20me%20on%20Ko-fi&color=333&logo=ko-fi)](https://ko-fi.com/Q5Q4J7IX)
 [![Buy me a coffee](https://img.shields.io/static/v1.svg?label=&message=Buy%20me%20a%20coffee&color=333&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/allejo)
 
-GitHub Pages can't run custom Jekyll plug-ins so when generating Tables of Contents (TOCs), you're stuck with either a JavaScript solution or using kramdown's `{:toc}` option. However, by using `{:toc}`, you are forced to have that code next to your actual markdown and you can't place it in a layout. This means _every_. _single_. _post_. will need to have the snippet. If you choose the JavaScript approach, that's perfectly fine but what if JS is disabled on the someone's browser or your page is just _really_ long and it becomes inefficient.
+GitHub Pages can't run custom Jekyll plug-ins so when generating Tables of Contents (TOCs), you're stuck with either a JavaScript solution or using kramdown's `{:toc}` option. However, by using `{:toc}`, you are forced to have that code next to your actual markdown and you can't place it in a layout. This means _every_. _single_. _post_. will need to have the snippet. If you choose the JavaScript approach, that's perfectly fine but what if JS is disabled on someone's browser or your page is just _really_ long and it becomes inefficient.
 
 Instead, I wrote this solution entirely in Liquid and can be used as an `{% include %}` in any website you want, in any layout you want. Want to see it in action? Here are some awesome websites that I know of using this solution :heart:.
 
