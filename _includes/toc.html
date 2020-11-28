@@ -99,24 +99,24 @@
         {% assign header = _workspace[0] | replace: _hAttrToStrip, '' %}
 
         {% if include.item_class and include.item_class != blank %}
-            {% capture listItemClass %}class="{{ include.item_class | replace: '%level%', currLevel | split: '.' | join: ' ' }}"{% endcapture %}
+            {% capture listItemClass %} class="{{ include.item_class | replace: '%level%', currLevel | split: '.' | join: ' ' }}"{% endcapture %}
         {% endif %}
 
         {% if include.submenu_class and include.submenu_class != blank %}
             {% assign subMenuLevel = currLevel | minus: 1 %}
-            {% capture subMenuClass %}class="{{ include.submenu_class | replace: '%level%', subMenuLevel | split: '.' | join: ' ' }}"{% endcapture %}
+            {% capture subMenuClass %} class="{{ include.submenu_class | replace: '%level%', subMenuLevel | split: '.' | join: ' ' }}"{% endcapture %}
         {% endif %}
 
         {% capture anchorBody %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
 
         {% if htmlID %}
-            {% capture anchorAttributes %}href="{% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ htmlID }}"{% endcapture %}
+            {% capture anchorAttributes %} href="{% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ htmlID }}"{% endcapture %}
 
             {% if include.anchor_class %}
                 {% capture anchorAttributes %}{{ anchorAttributes }} class="{{ include.anchor_class | split: '.' | join: ' ' }}"{% endcapture %}
             {% endif %}
 
-            {% capture listItem %}<a {{ anchorAttributes }}>{{ anchorBody }}</a>{% endcapture %}
+            {% capture listItem %}<a{{ anchorAttributes }}>{{ anchorBody }}</a>{% endcapture %}
         {% elsif skipNoIDs == true %}
             {% continue %}
         {% else %}
@@ -124,7 +124,7 @@
         {% endif %}
 
         {% if currLevel > lastLevel %}
-            {% capture my_toc %}{{ my_toc }}<{{ listModifier }} {{ subMenuClass }}>{% endcapture %}
+            {% capture my_toc %}{{ my_toc }}<{{ listModifier }}{{ subMenuClass }}>{% endcapture %}
         {% elsif currLevel < lastLevel %}
             {% assign repeatCount = lastLevel | minus: currLevel %}
 
@@ -137,7 +137,7 @@
             {% capture my_toc %}{{ my_toc }}</li>{% endcapture %}
         {% endif %}
 
-        {% capture my_toc %}{{ my_toc }}<li {{ listItemClass }}>{{ listItem }}{% endcapture %}
+        {% capture my_toc %}{{ my_toc }}<li{{ listItemClass }}>{{ listItem }}{% endcapture %}
 
         {% assign lastLevel = currLevel %}
         {% assign firstHeader = false %}
@@ -152,7 +152,7 @@
     {% if my_toc != '' %}
         {% assign root_attributes = '' %}
         {% if include.class and include.class != blank %}
-            {% capture root_attributes %}class="{{ include.class | split: '.' | join: ' ' }}"{% endcapture %}
+            {% capture root_attributes %} class="{{ include.class | split: '.' | join: ' ' }}"{% endcapture %}
         {% endif %}
 
         {% if include.id and include.id != blank %}
@@ -161,7 +161,7 @@
 
         {% if root_attributes %}
             {% assign nodes = my_toc | split: '>' %}
-            {% capture my_toc %}<{{ listModifier }} {{ root_attributes }}>{{ nodes | shift | join: '>' }}>{% endcapture %}
+            {% capture my_toc %}<{{ listModifier }}{{ root_attributes }}>{{ nodes | shift | join: '>' }}>{% endcapture %}
         {% endif %}
     {% endif %}
 {% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc }}
