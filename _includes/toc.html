@@ -102,6 +102,11 @@
             {% capture listItemClass %}class="{{ include.item_class | replace: '%level%', currLevel | split: '.' | join: ' ' }}"{% endcapture %}
         {% endif %}
 
+        {% if include.submenu_class and include.submenu_class != blank %}
+            {% assign subMenuLevel = currLevel | minus: 1 %}
+            {% capture subMenuClass %}class="{{ include.submenu_class | replace: '%level%', subMenuLevel | split: '.' | join: ' ' }}"{% endcapture %}
+        {% endif %}
+
         {% capture anchorBody %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
 
         {% if htmlID %}
@@ -119,7 +124,7 @@
         {% endif %}
 
         {% if currLevel > lastLevel %}
-            {% capture my_toc %}{{ my_toc }}<{{ listModifier }}>{% endcapture %}
+            {% capture my_toc %}{{ my_toc }}<{{ listModifier }} {{ subMenuClass }}>{% endcapture %}
         {% elsif currLevel < lastLevel %}
             {% assign repeatCount = lastLevel | minus: currLevel %}
 
@@ -155,8 +160,8 @@
         {% endif %}
 
         {% if root_attributes %}
-            {% assign toc_length = my_toc | size %}
-            {% capture my_toc %}<{{ listModifier }} {{ root_attributes }}>{{ my_toc | slice: 4, toc_length }}{% endcapture %}
+            {% assign nodes = my_toc | split: '>' %}
+            {% capture my_toc %}<{{ listModifier }} {{ root_attributes }}>{{ nodes | shift | join: '>' }}>{% endcapture %}
         {% endif %}
     {% endif %}
 {% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc }}
