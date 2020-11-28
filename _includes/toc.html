@@ -150,18 +150,18 @@
     {% endfor %}
 
     {% if jekyll_toc != '' %}
-        {% assign root_attributes = '' %}
+        {% assign rootAttributes = '' %}
         {% if include.class and include.class != blank %}
-            {% capture root_attributes %} class="{{ include.class | split: '.' | join: ' ' }}"{% endcapture %}
+            {% capture rootAttributes %} class="{{ include.class | split: '.' | join: ' ' }}"{% endcapture %}
         {% endif %}
 
         {% if include.id and include.id != blank %}
-            {% capture root_attributes %}{{ root_attributes }} id="{{ include.id }}"{% endcapture %}
+            {% capture rootAttributes %}{{ rootAttributes }} id="{{ include.id }}"{% endcapture %}
         {% endif %}
 
-        {% if root_attributes %}
+        {% if rootAttributes %}
             {% assign nodes = jekyll_toc | split: '>' %}
-            {% capture jekyll_toc %}<{{ listModifier }}{{ root_attributes }}>{{ nodes | shift | join: '>' }}>{% endcapture %}
+            {% capture jekyll_toc %}<{{ listModifier }}{{ rootAttributes }}>{{ nodes | shift | join: '>' }}>{% endcapture %}
         {% endif %}
     {% endif %}
-{% endcapture %}{% assign tocWorkspace = '' %}{{ jekyll_toc }}{% assign jekyll_toc = '' %}
+{% endcapture %}{% assign tocWorkspace = '' %}{{ deprecation_warnings }}{{ jekyll_toc }}
