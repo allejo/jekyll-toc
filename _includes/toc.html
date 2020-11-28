@@ -67,7 +67,7 @@
     {% assign currLevel = 0 %}
     {% assign lastLevel = 0 %}
 
-    {% capture listModifier %}{% if orderedList %}ol{% else %}li{% endif %}{% endcapture %}
+    {% capture listModifier %}{% if orderedList %}ol{% else %}ul{% endif %}{% endcapture %}
 
     {% for node in nodes %}
         {% if node == "" %}
@@ -117,12 +117,12 @@
         {% endif %}
 
         {% if currLevel > lastLevel %}
-            {% capture my_toc %}{{ my_toc }}<ul>{{ new_line }}{% endcapture %}
+            {% capture my_toc %}{{ my_toc }}<{{ listModifier }}>{{ new_line }}{% endcapture %}
         {% elsif currLevel < lastLevel %}
             {% assign repeatCount = lastLevel | minus: currLevel %}
 
             {% for i in (1..repeatCount) %}
-                {% capture my_toc %}{{ my_toc }}</li></ul>{% endcapture %}
+                {% capture my_toc %}{{ my_toc }}</li></{{ listModifier }}>{% endcapture %}
             {% endfor %}
 
             {% capture my_toc %}{{ my_toc }}</li>{% endcapture %}
@@ -139,7 +139,7 @@
     {% assign repeatCount = minHeader | minus: 1 %}
     {% assign repeatCount = lastLevel | minus: repeatCount %}
     {% for i in (1..repeatCount) %}
-        {% capture my_toc %}{{ my_toc }}</li></ul>{{ new_line }}{% endcapture %}
+        {% capture my_toc %}{{ my_toc }}</li></{{ listModifier }}>{{ new_line }}{% endcapture %}
     {% endfor %}
 
     {% assign root_attributes = '' %}
@@ -153,6 +153,6 @@
 
     {% if root_attributes %}
         {% assign toc_length = my_toc | size %}
-        {% capture my_toc %}<ul {{ root_attributes }}>{{ my_toc | slice: 4, toc_length }}{% endcapture %}
+        {% capture my_toc %}<{{ listModifier }} {{ root_attributes }}>{{ my_toc | slice: 4, toc_length }}{% endcapture %}
     {% endif %}
 {% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc }}
