@@ -142,17 +142,19 @@
         {% capture my_toc %}{{ my_toc }}</li></{{ listModifier }}>{{ new_line }}{% endcapture %}
     {% endfor %}
 
-    {% assign root_attributes = '' %}
-    {% if include.class and include.class != blank %}
-        {% capture root_attributes %}class="{{ include.class | split: '.' | join: ' ' }}"{% endcapture %}
-    {% endif %}
+    {% if my_toc != '' %}
+        {% assign root_attributes = '' %}
+        {% if include.class and include.class != blank %}
+            {% capture root_attributes %}class="{{ include.class | split: '.' | join: ' ' }}"{% endcapture %}
+        {% endif %}
 
-    {% if include.id and include.id != blank %}
-        {% capture root_attributes %}{{ root_attributes }} id="{{ include.id }}"{% endcapture %}
-    {% endif %}
+        {% if include.id and include.id != blank %}
+            {% capture root_attributes %}{{ root_attributes }} id="{{ include.id }}"{% endcapture %}
+        {% endif %}
 
-    {% if root_attributes %}
-        {% assign toc_length = my_toc | size %}
-        {% capture my_toc %}<{{ listModifier }} {{ root_attributes }}>{{ my_toc | slice: 4, toc_length }}{% endcapture %}
+        {% if root_attributes %}
+            {% assign toc_length = my_toc | size %}
+            {% capture my_toc %}<{{ listModifier }} {{ root_attributes }}>{{ my_toc | slice: 4, toc_length }}{% endcapture %}
+        {% endif %}
     {% endif %}
 {% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc }}
