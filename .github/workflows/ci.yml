@@ -33,6 +33,10 @@ jobs:
         with:
           ruby-version: '2.5'
 
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
       - name: Configure Jekyll
         if: matrix.jekyll-versions != '(GitHub Pages)'
         run: |
