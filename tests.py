@@ -18,7 +18,7 @@ def normalize_xml(xml, test_file):
         print(f">> Invalid XML in {test_file}")
         raise
 
-    return re.sub('\\n\s+', '', str(ET.tostring(tree)))
+    return re.sub(r'(\\n|\n)\s*', '', str(ET.tostring(tree)), 0, re.MULTILINE)
 
 if __name__ == '__main__':
     test_path = os.path.join(os.getcwd(), '_site', 'tests')
