@@ -23,7 +23,7 @@ Lots!
 {% endcapture %}
 {% assign text = markdown | markdownify %}
 
-{% include toc.html html=text skip_no_ids=true %}
+{% include toc.html html=text skipNoIDs=true %}
 
 <!-- /// -->
 
