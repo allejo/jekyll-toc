@@ -24,7 +24,7 @@
         OTHER DEALINGS IN THE SOFTWARE.
     {% endcomment %}
     {% comment %}
-        Version 1.0.14
+        Version 1.1.0-dev
           https://github.com/allejo/jekyll-toc
 
         "...like all things liquid - where there's a will, and ~36 hours to spare, there's usually a/some way" ~jaybe
@@ -53,7 +53,6 @@
             generate the table of contents and will NOT output the markdown given to it
     {% endcomment %}
 
-<!-- This lack of indentation here is important! I need a newline character -->
 {% capture new_line %}
 {% endcapture %}
 
@@ -62,20 +61,22 @@
     {% assign skipNoIDs = include.skipNoIDs | default: false %}
     {% assign minHeader = include.h_min | default: 1 %}
     {% assign maxHeader = include.h_max | default: 6 %}
-    {% assign nodes = include.html | split: '<h' %}
-    {% assign firstHeader = true %}
-    {% assign previousLevel = 0 %}
+    {% assign nodes = include.html | strip | split: '<h' %}
 
-    {% capture listModifier %}{% if orderedList %}1.{% else %}-{% endif %}{% endcapture %}
+    {% assign firstHeader = true %}
+    {% assign currLevel = 0 %}
+    {% assign lastLevel = 0 %}
+
+    {% capture listModifier %}{% if orderedList %}ol{% else %}li{% endif %}{% endcapture %}
 
     {% for node in nodes %}
         {% if node == "" %}
             {% continue %}
         {% endif %}
 
-        {% assign headerLevel = node | replace: '"', '' | slice: 0, 1 | times: 1 %}
+        {% assign currLevel = node | replace: '"', '' | slice: 0, 1 | times: 1 %}
 
-        {% if headerLevel < minHeader or headerLevel > maxHeader %}
+        {% if currLevel < minHeader or currLevel > maxHeader %}
             {% continue %}
         {% endif %}
 
@@ -83,87 +84,75 @@
 
         {% assign _idWorkspace = _workspace[0] | split: 'id="' %}
         {% assign _idWorkspace = _idWorkspace[1] | split: '"' %}
-        {% assign html_id = _idWorkspace[0] %}
+        {% assign htmlID = _idWorkspace[0] %}
 
         {% assign _classWorkspace = _workspace[0] | split: 'class="' %}
         {% assign _classWorkspace = _classWorkspace[1] | split: '"' %}
-        {% assign html_class = _classWorkspace[0] %}
+        {% assign htmlClass = _classWorkspace[0] %}
 
-        {% if html_class contains "no_toc" %}
+        {% if htmlClass contains "no_toc" %}
             {% continue %}
         {% endif %}
 
         {% if firstHeader %}
-            {% assign firstHeader = false %}
-            {% assign minHeader = headerLevel %}
+            {% assign minHeader = currLevel %}
         {% endif %}
 
         {% capture _hAttrToStrip %}{{ _workspace[0] | split: '>' | first }}>{% endcapture %}
         {% assign header = _workspace[0] | replace: _hAttrToStrip, '' %}
 
-        {% assign indentAmount = headerLevel | minus: minHeader %}
-        {% assign space = '' %}
-        {% for i in (1..indentAmount) %}
-            {% assign space = space | prepend: '    ' %}
-        {% endfor %}
-
         {% if include.item_class and include.item_class != blank %}
-            {% capture listItemClass %}{:.{{ include.item_class | replace: '%level%', headerLevel }}}{% endcapture %}
+            {% capture listItemClass %}class="{{ include.item_class | replace: '%level%', currLevel }}"{% endcapture %}
         {% endif %}
 
         {% capture anchor_body %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
         {% capture anchor_body %}{{ anchor_body | replace: "|", "\|" }}{% endcapture %}
 
-        {% if html_id %}
-            {% capture list_item %}[{{ anchor_body }}]({% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ html_id }}){% endcapture %}
+        {% if htmlID %}
+            {% capture listItem %}<a href="{% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ htmlID }}">{{ anchor_body }}</a>{% endcapture %}
         {% elsif skipNoIDs == true %}
             {% continue %}
         {% else %}
-            {% capture list_item %}{{ anchor_body }}{% endcapture %}
+            {% capture listItem %}{{ anchor_body }}{% endcapture %}
         {% endif %}
 
-        <!--
-        If we have a submenu class and we're unindenting, then we need to add a "closing" class to this group of bullet
-        points
-        -->
-        {% if include.submenu_class and previousLevel > indentAmount %}
-            <!--
-            `space` is the current indentation, so we if want to close off the previous grouping, we need to add one
-            more level of indentation 
-            -->
-            {% assign submenuIndentation = space | prepend: '    ' %}
+        {% if currLevel > lastLevel %}
+            {% capture my_toc %}{{ my_toc }}<ul>{{ new_line }}{% endcapture %}
+        {% elsif currLevel < lastLevel %}
+            {% assign repeatCount = lastLevel | minus: currLevel %}
 
-            {% capture my_toc %}{{ my_toc }}{{ new_line }}{{ submenuIndentation }}{:.{{ include.submenu_class | replace: '%level%', previousLevel }}}{% endcapture %}
-        {% endif %}
-
-        {% capture my_toc %}{{ my_toc }}{{ new_line }}{{ space }}{{ listModifier }} {{ listItemClass }} {{ list_item }}{% if include.anchor_class %}{:.{{ include.anchor_class }}}{% endif %}{% endcapture %}
-
-        {% assign previousLevel = indentAmount %}
-    {% endfor %}
-
-    {% if include.class and include.class != blank %}
-        {% capture my_toc %}{:.{{ include.class }}}{{ new_line }}{{ my_toc | lstrip }}{% endcapture %}
-    {% endif %}
-
-    {% if include.id %}
-        {% capture my_toc %}{: #{{ include.id }}}{{ new_line }}{{ my_toc | lstrip }}{% endcapture %}
-    {% endif %}
-
-    <!--
-    If we have a submenu class, we need to close off all the remaining list item groups so that submenu classes are
-    applied correctly to them
-    -->
-    {% if include.submenu_class and include.submenu_class != blank %}
-        <!-- The last level of indentation that we were at, we need to work backwards from there closing each group -->
-        {% for i in (1..previousLevel) %}
-            {% assign lvl = previousLevel | plus: 1 | minus: i %} <!-- Invert the indent level based on `i` -->
-            {% assign closingSpace = '' %}
-
-            {% for i in (1..lvl) %}
-                {% assign closingSpace = closingSpace | prepend: '    ' %}
+            {% for i in (1..repeatCount) %}
+                {% capture my_toc %}{{ my_toc }}</li></ul>{% endcapture %}
             {% endfor %}
 
-            {% capture my_toc %}{{ my_toc }}{{ new_line }}{{ closingSpace }}{:.{{ include.submenu_class | replace: '%level%', lvl }}}{% endcapture %}
-        {% endfor %}
+            {% capture my_toc %}{{ my_toc }}</li>{% endcapture %}
+        {% else %}
+            {% capture my_toc %}{{ my_toc }}</li>{{ new_line }}{% endcapture %}
+        {% endif %}
+
+        {% capture my_toc %}{{ my_toc }}<li>{{ listItem }}{% endcapture %}
+
+        {% assign lastLevel = currLevel %}
+        {% assign firstHeader = false %}
+    {% endfor %}
+
+    {% assign repeatCount = minHeader | minus: 1 %}
+    {% assign repeatCount = lastLevel | minus: repeatCount %}
+    {% for i in (1..repeatCount) %}
+        {% capture my_toc %}{{ my_toc }}</li></ul>{{ new_line }}{% endcapture %}
+    {% endfor %}
+
+    {% assign root_attributes = '' %}
+    {% if include.class and include.class != blank %}
+        {% capture root_attributes %}class="{{ include.class | split: '.' | join: ' ' }}"{% endcapture %}
     {% endif %}
-{% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc | markdownify | strip }}
+
+    {% if include.id and include.id != blank %}
+        {% capture root_attributes %}{{ root_attributes }} id="{{ include.id }}"{% endcapture %}
+    {% endif %}
+
+    {% if root_attributes %}
+        {% assign toc_length = my_toc | size %}
+        {% capture my_toc %}<ul {{ root_attributes }}>{{ my_toc | slice: 4, toc_length }}{% endcapture %}
+    {% endif %}
+{% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc }}
