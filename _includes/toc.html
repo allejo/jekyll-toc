@@ -44,18 +44,33 @@
             * ordered       (bool)   : false  - when set to true, an ordered list will be outputted instead of an unordered list
             * item_class    (string) :   ''   - add custom class(es) for each list item; has support for '%level%' placeholder, which is the current heading level
             * submenu_class (string) :   ''   - add custom class(es) for each child group of headings; has support for '%level%' placeholder which is the current "submenu" heading level
-            * baseurl       (string) :   ''   - add a base url to the TOC links for when your TOC is on another page than the actual content
+            * base_url      (string) :   ''   - add a base url to the TOC links for when your TOC is on another page than the actual content
             * anchor_class  (string) :   ''   - add custom class(es) for each anchor element
-            * skipNoIDs     (bool)   : false  - skip headers that do not have an `id` attribute
+            * skip_no_ids   (bool)   : false  - skip headers that do not have an `id` attribute
 
         Output:
             An ordered or unordered list representing the table of contents of a markdown block. This snippet will only
             generate the table of contents and will NOT output the markdown given to it
     {% endcomment %}
 
+    {% capture newline %}
+    {% endcapture %}
+    {% assign newline = newline | rstrip %} <!-- Remove the extra spacing but preserve the newline -->
+
+    {% capture deprecation_warnings %}{% endcapture %}
+
+    {% if include.baseurl %}
+        {% capture deprecation_warnings %}{{ deprecation_warnings }}<!-- jekyll-toc :: "baseurl" has been deprecated, use "base_url" instead -->{{ newline }}{% endcapture %}
+    {% endif %}
+
+    {% if include.skipNoIDs %}
+        {% capture deprecation_warnings %}{{ deprecation_warnings }}<!-- jekyll-toc :: "skipNoIDs" has been deprecated, use "skip_no_ids" instead -->{{ newline }}{% endcapture %}
+    {% endif %}
+
     {% capture jekyll_toc %}{% endcapture %}
     {% assign orderedList = include.ordered | default: false %}
-    {% assign skipNoIDs = include.skipNoIDs | default: false %}
+    {% assign baseURL = include.base_url | default: include.baseurl | default: '' %}
+    {% assign skipNoIDs = include.skip_no_ids | default: include.skipNoIDs | default: false %}
     {% assign minHeader = include.h_min | default: 1 %}
     {% assign maxHeader = include.h_max | default: 6 %}
     {% assign nodes = include.html | strip | split: '<h' %}
@@ -110,7 +125,7 @@
         {% capture anchorBody %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
 
         {% if htmlID %}
-            {% capture anchorAttributes %} href="{% if include.baseurl %}{{ include.baseurl }}{% endif %}#{{ htmlID }}"{% endcapture %}
+            {% capture anchorAttributes %} href="{% if baseURL %}{{ baseURL }}{% endif %}#{{ htmlID }}"{% endcapture %}
 
             {% if include.anchor_class %}
                 {% capture anchorAttributes %}{{ anchorAttributes }} class="{{ include.anchor_class | split: '.' | join: ' ' }}"{% endcapture %}

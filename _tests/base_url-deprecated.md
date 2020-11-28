@@ -6,7 +6,7 @@
 {% endcapture %}
 {% assign text = markdown | markdownify %}
 
-{% include toc.html html=text base_url="example.org" %}
+{% include toc.html html=text baseurl="example.org" %}
 
 <!-- /// -->
 
