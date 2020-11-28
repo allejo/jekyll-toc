@@ -53,7 +53,7 @@
             generate the table of contents and will NOT output the markdown given to it
     {% endcomment %}
 
-    {% capture my_toc %}{% endcapture %}
+    {% capture jekyll_toc %}{% endcapture %}
     {% assign orderedList = include.ordered | default: false %}
     {% assign skipNoIDs = include.skipNoIDs | default: false %}
     {% assign minHeader = include.h_min | default: 1 %}
@@ -124,20 +124,20 @@
         {% endif %}
 
         {% if currLevel > lastLevel %}
-            {% capture my_toc %}{{ my_toc }}<{{ listModifier }}{{ subMenuClass }}>{% endcapture %}
+            {% capture jekyll_toc %}{{ jekyll_toc }}<{{ listModifier }}{{ subMenuClass }}>{% endcapture %}
         {% elsif currLevel < lastLevel %}
             {% assign repeatCount = lastLevel | minus: currLevel %}
 
             {% for i in (1..repeatCount) %}
-                {% capture my_toc %}{{ my_toc }}</li></{{ listModifier }}>{% endcapture %}
+                {% capture jekyll_toc %}{{ jekyll_toc }}</li></{{ listModifier }}>{% endcapture %}
             {% endfor %}
 
-            {% capture my_toc %}{{ my_toc }}</li>{% endcapture %}
+            {% capture jekyll_toc %}{{ jekyll_toc }}</li>{% endcapture %}
         {% else %}
-            {% capture my_toc %}{{ my_toc }}</li>{% endcapture %}
+            {% capture jekyll_toc %}{{ jekyll_toc }}</li>{% endcapture %}
         {% endif %}
 
-        {% capture my_toc %}{{ my_toc }}<li{{ listItemClass }}>{{ listItem }}{% endcapture %}
+        {% capture jekyll_toc %}{{ jekyll_toc }}<li{{ listItemClass }}>{{ listItem }}{% endcapture %}
 
         {% assign lastLevel = currLevel %}
         {% assign firstHeader = false %}
@@ -146,10 +146,10 @@
     {% assign repeatCount = minHeader | minus: 1 %}
     {% assign repeatCount = lastLevel | minus: repeatCount %}
     {% for i in (1..repeatCount) %}
-        {% capture my_toc %}{{ my_toc }}</li></{{ listModifier }}>{% endcapture %}
+        {% capture jekyll_toc %}{{ jekyll_toc }}</li></{{ listModifier }}>{% endcapture %}
     {% endfor %}
 
-    {% if my_toc != '' %}
+    {% if jekyll_toc != '' %}
         {% assign root_attributes = '' %}
         {% if include.class and include.class != blank %}
             {% capture root_attributes %} class="{{ include.class | split: '.' | join: ' ' }}"{% endcapture %}
@@ -160,8 +160,8 @@
         {% endif %}
 
         {% if root_attributes %}
-            {% assign nodes = my_toc | split: '>' %}
-            {% capture my_toc %}<{{ listModifier }}{{ root_attributes }}>{{ nodes | shift | join: '>' }}>{% endcapture %}
+            {% assign nodes = jekyll_toc | split: '>' %}
+            {% capture jekyll_toc %}<{{ listModifier }}{{ root_attributes }}>{{ nodes | shift | join: '>' }}>{% endcapture %}
         {% endif %}
     {% endif %}
-{% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc }}
+{% endcapture %}{% assign tocWorkspace = '' %}{{ jekyll_toc }}{% assign jekyll_toc = '' %}
