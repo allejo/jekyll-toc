@@ -24,6 +24,7 @@ Instead, I wrote this solution entirely in Liquid and can be used as an `{% incl
 - ["Bulma Clean" Jekyll Theme](https://github.com/chrisrhymes/bulma-clean-theme/commit/547e88c131e892ff1c013b0801c180dbd845aaa5#diff-cef4f277dc360c0c0b73134898ed0a5f)
 - The Google APIs team [homepage](https://github.com/googleapis/googleapis.github.io/commit/ca1d4499c076ee01be67f1abc965438b1801b993#diff-cef4f277dc360c0c0b73134898ed0a5f), [Google AIP website](https://github.com/googleapis/aip/commit/b25841f9b7efaf1b85c23166ba6a70d75dbf72f1#diff-cef4f277dc360c0c0b73134898ed0a5f) and [API Linter project](https://github.com/googleapis/api-linter/commit/fbed405f4e74a9ce56c043048e144bb8499b2fd5#diff-808e6284272b61fc0ce1aa390a006e4b)
 - [Shopify App CLI Extensions](https://github.com/Shopify/shopify-app-cli-extensions/commit/9e2fd9f82b495d93e7d6b7ea26c2c74a81b8b479#diff-808e6284272b61fc0ce1aa390a006e4b)
+- [AWS' Open Distro for Elasticsearch Documentation](https://github.com/opendistro/for-elasticsearch-docs/commit/bfcf72e928dacabf1ad0008e973d96417885a3aa#diff-ae5bddf889465c887d2c57e786a6b29f4ac82b277fcce0672ce8bbdba11ebf3a)
 
 For more information regarding how this include works, [read the blog post](https://allejo.io/blog/a-jekyll-toc-in-liquid-only/).
 
