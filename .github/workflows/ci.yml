@@ -37,6 +37,9 @@ jobs:
         with:
           python-version: '3.8'
 
+      - name: Install bundler
+        run: gem install bundler
+
       - name: Configure Jekyll
         if: matrix.jekyll-versions != '(GitHub Pages)'
         run: |
