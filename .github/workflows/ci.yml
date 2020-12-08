@@ -57,3 +57,19 @@ jobs:
           bundle exec jekyll --version
           bundle exec jekyll build
           python tests.py
+
+  on_complete:
+    name: Notify IRC on Completion
+    runs-on: ubuntu-latest
+    needs: tests
+    if: always()
+
+    steps:
+      - name: Send IRC notification
+        uses: allejo/supybot-notification-action@v1
+        with:
+          status: ${{ needs.tests.result }}
+          hostname: ${{ secrets.SUPYBOT_HOSTNAME }}
+          credentials: ${{ secrets.SUPYBOT_PASSWORD }}
+          channel: '#sujevo-dev'
+          default_message: true
