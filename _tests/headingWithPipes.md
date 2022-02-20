@@ -3,7 +3,7 @@
 ---
 
 {% capture markdown %}
-# ZDE015 - Connects to [Trigger|Search|Action] NAME, Which Doesn't Exist
+# ZDE015 - Connects to [Trigger|Search|Action] NAME, Which Does Not Exist
 {% endcapture %}
 {% assign text = markdown | markdownify %}
 
@@ -13,8 +13,8 @@
 
 <ul>
     <li>
-        <a href="#zde015---connects-to-triggersearchaction-name-which-doesnt-exist">
-            ZDE015 - Connects to [Trigger|Search|Action] NAME, Which Doesn&#8217;t Exist
+        <a href="#zde015---connects-to-triggersearchaction-name-which-does-not-exist">
+            ZDE015 - Connects to [Trigger|Search|Action] NAME, Which Does Not Exist
         </a>
     </li>
 </ul>

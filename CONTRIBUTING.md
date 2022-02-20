@@ -52,7 +52,7 @@ The `<!-- /// -->` is the directive used to tell our Python script where the act
 
 ### Running Tests
 
-Build the Jekyll site which processes all of our tests along with our current TOC snippet and then run the Python script (requires 2.7).
+Build the Jekyll site which processes all of our tests along with our current TOC snippet and then run the Python 3 script.
 
 ```bash
 bundle exec jekyll build
