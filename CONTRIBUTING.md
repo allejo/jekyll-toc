@@ -24,7 +24,7 @@ Got a new feature you'd like to add or a bug fix? Be awesome and submit a PR! A 
 
 This project has unit tests to ensure consistent TOC generation and reliability so existing features don't break. This means existing unit tests should **never** be changed in order to make your code pass the tests.
 
-Unit tests are located in the [`_test`](_tests) directory; each file represents a single test. This directory is a Jekyll collection which outputs files, which are run through a Python 2.7 script checking that the actual values are what is expected.
+Unit tests are located in the [`_test`](_tests) directory; each file represents a single test. This directory is a Jekyll collection which outputs files, which are run through a Python 3.8 script checking that the actual values are what is expected.
 
 ### Creating Your Own Test
 
@@ -56,5 +56,5 @@ Build the Jekyll site which processes all of our tests along with our current TO
 
 ```bash
 bundle exec jekyll build
-python tests.py
+python plutils/pltest.py
 ```

@@ -25,7 +25,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          submodules: true
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -54,7 +56,7 @@ jobs:
         run: |
           bundle exec jekyll --version
           bundle exec jekyll build
-          python tests.py
+          python plutils/pltest.py
 
   on_complete:
     name: Notify IRC on Completion

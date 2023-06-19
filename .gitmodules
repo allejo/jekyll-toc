@@ -1,0 +1,3 @@
+[submodule "plutils"]
+	path = plutils
+	url = https://github.com/allejo/pure-liquid-utils.git
