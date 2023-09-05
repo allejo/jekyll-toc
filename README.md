@@ -26,6 +26,7 @@ Instead, I wrote this solution entirely in Liquid and can be used as an `{% incl
 - [Shopify App CLI Extensions](https://github.com/Shopify/shopify-app-cli-extensions/commit/9e2fd9f82b495d93e7d6b7ea26c2c74a81b8b479#diff-808e6284272b61fc0ce1aa390a006e4b)
 - [AWS' Open Distro for Elasticsearch Documentation](https://github.com/opendistro/for-elasticsearch-docs/commit/bfcf72e928dacabf1ad0008e973d96417885a3aa#diff-ae5bddf889465c887d2c57e786a6b29f4ac82b277fcce0672ce8bbdba11ebf3a)
 - [GitHub's Open Source Guides website](https://github.com/github/opensource.guide/blob/c97bd849cce0a13cc67228975294bbbadc1beb41/_includes/jekyll-toc.html)
+- [Gitbook Jekyll Theme](https://github.com/sighingnow/jekyll-gitbook/commit/e0f385fc85a67beb964ebd09394cc0365cecf499)
 
 For more information regarding how this include works, [read the blog post](https://allejo.io/blog/a-jekyll-toc-in-liquid-only/).
 
