@@ -72,6 +72,27 @@ This snippet is highly customizable. Here are the available parameters to change
 - `baseurl` has been deprecated since 1.1.0, use `base_url` instead
 - `skipNoIDs` has been deprecated since 1.1.0, use `skip_no_ids` instead
 
+## Common Problems
+
+### An `<li>` is rendering outside of a `<ul>`
+
+This happens when your headings are placed out of order or when you skip headings. For example, if you go from an `<h2>` to an `<h4>` with no `<h3>` in between; see "Heading 2.A" in this example,
+
+```markdown
+## Heading 1
+### Heading 1.A
+## Heading 2
+#### Heading 2.A
+```
+
+This project expects headings to be nested/ordered correctly, which is the [recommended way of headings working](https://www.w3.org/WAI/tutorials/page-structure/headings/#heading-ranks).
+
+> Skipping heading ranks can be confusing and should be avoided where possible: Make sure that a `<h2>` is not followed directly by an `<h4>`, for example. It is ok to skip ranks when closing subsections, for instance, a `<h2>` beginning a new section, can follow an `<h4>` as it closes the previous section.
+>
+> \- [w3.org](https://www.w3.org/WAI/tutorials/page-structure/headings/#heading-ranks)
+
+While it is possible to fix this and have the TOC internally keep track of indentation, I've chosen not to allow for this bad practice of allowing headings to be out of order. If you'd like to proceed anyways, see [#13 for a third-party patch](https://github.com/allejo/jekyll-toc/pull/13) that can enable this functionality.
+
 ## Performance
 
 The performance impact of this snippet on your site is pretty negligible. The stats below were gotten from Jekyll's `--profile` option.
