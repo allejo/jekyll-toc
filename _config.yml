@@ -8,6 +8,7 @@ exclude:
   - Gemfile.lock
   - LICENSE.BSD3.md
   - LICENSE.MIT.md
+  - plutils/
   - README.md
   - tests.py
   - vendor

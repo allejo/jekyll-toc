@@ -64,6 +64,7 @@ This snippet is highly customizable. Here are the available parameters to change
 | `base_url`      | string | ''     | add a base url to the TOC links for when your TOC is on another page than the actual content |
 | `anchor_class`  | string | ''     | add custom class(es) for each anchor element |
 | `skip_no_ids`   | bool   | false  | skip headers that do not have an `id` attribute |
+| `flat_toc`      | bool   | false  | when set to true, the TOC will be a single level list |
 
 <sup>*</sup> This is a required parameter
 
